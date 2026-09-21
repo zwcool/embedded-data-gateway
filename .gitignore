@@ -19,7 +19,7 @@ CTestTestfile.cmake
 Testing/
 
 # IDEs and Editors
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
