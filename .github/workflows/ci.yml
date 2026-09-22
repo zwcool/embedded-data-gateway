@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    name: Ubuntu / GCC / C++20
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install build tools and clang-format
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build clang-format
+
+      - name: Check formatting with clang-format
+        run: |
+          find gateway -name "*.hpp" -o -name "*.cpp" | xargs clang-format --dry-run --Werror
+
+      - name: Configure CMake
+        run: |
+          cmake -B build -S . -G Ninja \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DENABLE_TESTS=ON
+
+      - name: Build targets
+        run: |
+          cmake --build build --parallel
+
+      - name: Run Unit Tests
+        run: |
+          ctest --test-dir build --output-on-failure
