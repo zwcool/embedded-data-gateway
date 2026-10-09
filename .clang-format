@@ -1,16 +1,37 @@
-BasedOnStyle: LLVM
+BasedOnStyle: Google
 Language: Cpp
 Standard: c++20
 
+# --- Horizontal Layout & Indentation ---
+ColumnLimit: 100
 IndentWidth: 4
 TabWidth: 4
 UseTab: Never
-ColumnLimit: 100
-
+NamespaceIndentation: None
 AccessModifierOffset: -4
+
+# --- Braces & Line Breaks ---
 BreakBeforeBraces: Attach
-IncludeBlocks: Regroup
-SortIncludes: CaseSensitive
-FixNamespaceComments: true
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortBlocksOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: Never
+
+# --- Parameter & Argument Wrapping (Clang >= 14) ---
+AlignAfterOpenBracket: BlockIndent
+BinPackArguments: false
+BinPackParameters: false
+
+# --- Pointer & Reference Alignment ---
 PointerAlignment: Left
 ReferenceAlignment: Left
+
+# --- C++20 Concepts & Templates ---
+BreakBeforeConceptDeclarations: Always
+
+# --- Include Hygiene & Ordering ---
+SortIncludes: CaseSensitive
+IncludeBlocks: Regroup
+
+# --- Misc ---
+FixNamespaceComments: true
