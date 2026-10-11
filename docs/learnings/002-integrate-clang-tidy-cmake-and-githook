@@ -1,0 +1,12 @@
+# Learning 002: Integrating clang-format and clang-tidy into CMake and Git Hooks
+
+## Context
+During code review and milestone planning, the following question arose: "What are the common and modern industry standards for code formatting, naming conventions, and static analysis in C++20?"
+
+## Problem
+Lack of a unified code formatting standard, missing automated naming enforcement, and no guardrails to prevent unformatted or non-compliant code from being committed.
+
+## Key Learnings & Decisions
+- **Target-based static analysis in CMake:** Setting `clang-tidy` globally via `CMAKE_CXX_CLANG_TIDY` forces analysis on third-party dependencies fetched via `FetchContent` (e.g., GoogleTest), which causes the build to fail due to foreign code violations. Instead, `clang-tidy` must be scoped exclusively to internal targets using `set_target_properties` via a custom helper function (`target_enable_clang_tidy`).
+- **Git pre-commit hook prevention:** Enforced code formatting at the developer boundary using a repository-managed hook (`.githooks/pre-commit`). It runs `clang-format --dry-run --Werror` strictly on staged C/C++ files, preventing unformatted code from entering the Git history.
+- **Dedicated CMake format targets:** Added `format` (in-place modification) and `format-check` (dry-run for CI pipelines) custom targets, allowing batch operations across the internal codebase without triggering cache invalidations during normal compilation.

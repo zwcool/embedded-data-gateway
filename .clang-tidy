@@ -1,0 +1,56 @@
+# Checks configuration: enable strict baselines, prune noisy/antipattern checks
+Checks: >
+  -*,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,
+  cppcoreguidelines-*,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+  modernize-*,
+  -modernize-use-trailing-return-type,
+  performance-*,
+  readability-identifier-naming
+
+WarningsAsErrors: ''
+
+# Inspect project headers while ignoring external/vendor headers
+HeaderFilterRegex: '(include|src)/.*'
+
+CheckOptions:
+  # --- Magic numbers ---
+  readability-magic-numbers.IgnoredIntegerValues: "0;1;2;3;4;8;16;24;32;64;128;255"
+  # --- Types & Concepts (PascalCase) ---
+  readability-identifier-naming.ClassCase: CamelCase
+  readability-identifier-naming.StructCase: CamelCase
+  readability-identifier-naming.ConceptCase: CamelCase
+  readability-identifier-naming.EnumCase: CamelCase
+  readability-identifier-naming.TypeAliasCase: CamelCase
+
+  # --- Functions & Methods (STL-style snake_case) ---
+  readability-identifier-naming.FunctionCase: lower_case
+  readability-identifier-naming.MethodCase: lower_case
+
+  # --- Local Variables & Parameters ---
+  readability-identifier-naming.VariableCase: lower_case
+  readability-identifier-naming.ParameterCase: lower_case
+
+  # --- Member Variables (Encapsulation vs. Aggregates) ---
+  # Enforce trailing underscore on private/protected state
+  readability-identifier-naming.PrivateMemberCase: lower_case
+  readability-identifier-naming.PrivateMemberSuffix: _
+  readability-identifier-naming.ProtectedMemberCase: lower_case
+  readability-identifier-naming.ProtectedMemberSuffix: _
+  # Plain data structs / aggregates retain clean names without suffix
+  readability-identifier-naming.PublicMemberCase: lower_case
+
+  # --- Constants & Enumerators (Google kCamelCase) ---
+  readability-identifier-naming.ConstantCase: CamelCase
+  readability-identifier-naming.ConstantPrefix: k
+  readability-identifier-naming.ConstexprVariableCase: CamelCase
+  readability-identifier-naming.ConstexprVariablePrefix: k
+  readability-identifier-naming.EnumConstantCase: CamelCase
+  readability-identifier-naming.EnumConstantPrefix: k
+
+  # --- Preprocessor ---
+  readability-identifier-naming.MacroDefinitionCase: UPPER_CASE

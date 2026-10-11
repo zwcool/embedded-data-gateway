@@ -52,3 +52,5 @@ Because an executable (`add_executable`) is a terminal binary artifact and never
 
 * **Namespaced Header Layout:**
   Always mirror the namespace in the filesystem (`include/gateway/version.hpp`). Including via `<gateway/version.hpp>` prevents namespace collisions when integrating third-party libraries or building in complex Yocto multi-layer environments.
+
+> First learning created with KI

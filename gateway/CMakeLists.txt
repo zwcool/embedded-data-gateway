@@ -4,6 +4,8 @@ add_library(gateway_core
     src/packet.cpp
 )
 
+target_enable_clang_tidy(gateway_core)
+
 target_include_directories(gateway_core
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
