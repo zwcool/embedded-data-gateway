@@ -15,7 +15,7 @@ BreakBeforeBraces: Attach
 AllowShortFunctionsOnASingleLine: Inline
 AllowShortBlocksOnASingleLine: Never
 AllowShortIfStatementsOnASingleLine: Never
-AllowShortLoopsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
 
 # --- Parameter & Argument Wrapping (Clang >= 14) ---
 AlignAfterOpenBracket: BlockIndent

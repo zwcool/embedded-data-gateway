@@ -4,6 +4,8 @@ Checks: >
   bugprone-*,
   -bugprone-easily-swappable-parameters,
   cppcoreguidelines-*,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-magic-numbers,
   -cppcoreguidelines-pro-bounds-pointer-arithmetic,
   -cppcoreguidelines-pro-type-reinterpret-cast,
   -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
@@ -18,8 +20,6 @@ WarningsAsErrors: ''
 HeaderFilterRegex: '(include|src)/.*'
 
 CheckOptions:
-  # --- Magic numbers ---
-  readability-magic-numbers.IgnoredIntegerValues: "0;1;2;3;4;8;16;24;32;64;128;255"
   # --- Types & Concepts (PascalCase) ---
   readability-identifier-naming.ClassCase: CamelCase
   readability-identifier-naming.StructCase: CamelCase

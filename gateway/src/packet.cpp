@@ -14,8 +14,9 @@ void serialize_u32_bigendian(uint32_t value, std::byte* destination) noexcept {
 }
 }  // namespace
 
-std::array<std::byte, TelemetryPacket::kSerializedSize> TelemetryPacket::serialize()
-    const noexcept {
+using SerializedBuffer = std::array<std::byte, TelemetryPacket::kSerializedSize>;
+
+SerializedBuffer TelemetryPacket::serialize() const noexcept {
     std::array<std::byte, kSerializedSize> buffer{};
 
     serialize_u32_bigendian(sequence_number, buffer.data());

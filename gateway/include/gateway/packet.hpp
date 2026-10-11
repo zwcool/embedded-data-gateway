@@ -16,4 +16,4 @@ struct TelemetryPacket {
     [[nodiscard]] std::array<std::byte, kSerializedSize> serialize() const noexcept;
 };
 
-} // namespace gateway
+}  // namespace gateway
